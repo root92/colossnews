@@ -1,0 +1,17 @@
+{% include 'base.html' %}
+<div class="container-fluid">
+    {% if object_list %}
+        <div class="list-group">
+            {% for annonce in object_list %}
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                    <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{annonce.entreprise}}</h5>
+                    <small>{{annonce.limite_date}} / 3 days ago</small>
+                    </div>
+                    <p class="mb-1">{{annonce.description}}.</p>
+                    <small>{{annonce.created}}.</small>
+                </a>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
