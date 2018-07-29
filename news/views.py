@@ -13,6 +13,8 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         """Return the last ten published article."""
         return Article.objects.order_by('-pub_date')[:10]
+    
+    paginate_by = 10
 
 class DetailView(generic.DetailView):
     model = Article

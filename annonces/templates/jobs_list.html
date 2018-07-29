@@ -1,17 +1,69 @@
 {% include 'base.html' %}
-<div class="container-fluid">
-    {% if object_list %}
-        <div class="list-group">
-            {% for annonce in object_list %}
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-                    <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">{{annonce.entreprise}}</h5>
-                    <small>{{annonce.limite_date}} / 3 days ago</small>
-                    </div>
-                    <p class="mb-1">{{annonce.description}}.</p>
-                    <small>{{annonce.created}}.</small>
-                </a>
-            {% endfor %}
+
+<div class="container-fluid" style="padding-top: 5px">
+    <div class="row">
+        <div class="col-2">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 12rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Comptabilite Finance</li>
+                    <li class="list-group-item">Informatique</li>
+                    <li class="list-group-item">Achat Logistique</li>
+                    <li class="list-group-item">Controle / Audite</li>
+                    <li class="list-group-item">Commerciale</li>
+                    <li class="list-group-item">Operation</li>
+                    <li class="list-group-item">Comunication</li>
+                </ul>
+            </div>
         </div>
-    {% endif %}
-</div>
+                
+        <div class="col-7">
+            {% if object_list %}
+                {% for annonce in object_list %}
+                    <div class="list-group" style="padding-bottom: 5px">
+                        <a href="{% url 'jobs_details' annonce.id%}" class="list-group-item list-group-item-action flex-column align-items-start active">
+                            <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{annonce.entreprise}}</h5>
+                            <small>{{annonce.limite_date}} / 3 days ago</small>
+                            </div>
+                            <p class="mb-1">Recrute un(e) {{annonce.job_title}}.</p>
+                            <p class="mb-1">{{annonce.description}}.</p>
+                            <small>{{annonce.created}}.</small>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <nav aria-label="Page navigation example">
+                {% if is_paginated %}
+                    <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Précédent</a></li>
+                        {%else%}
+                            <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in paginator.page_range %}
+                            {% if page_obj.number == i %}
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                            <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+                </nav>
+                
+            </div>
+            <div class="col-3">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1 class="display-4">Espace publicitaire</h1>
+                        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                    </div>
+        
+    </div>
+

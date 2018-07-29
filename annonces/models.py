@@ -35,12 +35,12 @@ class Apply(models.Model):
     email = models.EmailField()
     adresse_1 = models.CharField(max_length = 250)
     adresse_2 = models.CharField(max_length = 250)
-    doc_1 = models.FileField()
-    doc_2 = models.FileField()
 
     def __str__(self):
         return self.first_name
 
-    
+class Doc(models.Model):
+    apply = models.ForeignKey(Apply, on_delete=models.CASCADE)
+    doc = models.FileField() 
 
     

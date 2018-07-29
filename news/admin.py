@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Domaine, Article
+from .models import Categorie, Article
 # Register your models here.
-@admin.register(Domaine)
-class DomaineAdmin(admin.ModelAdmin):
+@admin.register(Categorie)
+class CategorieAdmin(admin.ModelAdmin):
     list_display = ['title', 'description', 'created', 'updated']
 
 

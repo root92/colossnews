@@ -3,7 +3,7 @@ import datetime
 from django.utils import timezone
 
 # Create your models here.
-class Domaine(models.Model):
+class Categorie(models.Model):
     title = models.CharField(max_length = 250)
     description = models.TextField()
     created = models.DateTimeField(auto_now=True)
@@ -20,7 +20,7 @@ class Article(models.Model):
             ('WD', 'Monde'),
         )
     pub_date = models.DateTimeField()
-    domaine = models.ForeignKey(Domaine, on_delete=models.CASCADE)
+    domaine = models.ForeignKey(Categorie, on_delete=models.CASCADE)
     localisation = models.CharField(max_length=3, choices=LOC)
     title = models.CharField(max_length = 350)
     image = models.ImageField(upload_to='images', blank= True)
